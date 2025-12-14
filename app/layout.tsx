@@ -2,7 +2,12 @@ import './globals.css'
 import Navbar from '@/components/Nav'
 import Footer from '@/components/Footer'
 import { ThemeProvider } from "@/components/theme-provider"
+import { Inter } from 'next/font/google'
 
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-inter',
+})
 
 export const metadata = {
   title: 'Your Name - Portfolio',
@@ -15,20 +20,20 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
+      <body className={inter.className}>
         <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Navbar />
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
           <main className="min-h-screen">
             {children}
           </main>
           <Footer />
-          </ThemeProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
