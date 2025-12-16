@@ -1,6 +1,8 @@
 import './globals.css'
 import Navbar from '@/components/Nav'
 import Footer from '@/components/Footer'
+import { ThemeProvider } from "@/components/theme-provider"
+
 
 export const metadata = {
   title: 'Your Name - Portfolio',
@@ -13,11 +15,20 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Navbar />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <Footer />
+          </ThemeProvider>
       </body>
     </html>
   )
