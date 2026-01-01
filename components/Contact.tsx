@@ -118,10 +118,10 @@ function Contact() {
       {/* CTA Section */}
       <div className="bg-linear-to-br from-letters/5 to-letters/10 rounded-3xl p-8 md:p-12 text-center border border-letters/20">
         <Send className="mx-auto mb-4 text-letters" size={48} />
-        <h3 className="text-2xl font-bold text-slate-800 mb-3">
+        <h3 className="text-2xl font-bold text-letters  mb-3">
           Ready to Start a Conversation?
         </h3>
-        <p className="text-slate-600 mb-6 max-w-xl mx-auto">
+        <p className="text-letters1  mb-6 max-w-xl mx-auto">
           Drop me an email and I&apos;ll respond as soon as possible. I&apos;m
           always excited to discuss new opportunities and collaborations!
         </p>
@@ -136,7 +136,7 @@ function Contact() {
 
       {/* Optional: Social Links Row */}
       <div className="mt-12 text-center">
-        <p className="text-sm text-slate-500 mb-4">Or find me on</p>
+        <p className="text-sm text-letters1  mb-4">Or find me on</p>
         <div className="flex justify-center gap-4">
           <a
             href="https://www.linkedin.com/in/medhani-premathilaka"

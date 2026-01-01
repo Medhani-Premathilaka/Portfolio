@@ -3,7 +3,7 @@ import Image from "next/image";
 
 function Hero() {
   return (
-    <section className="flex flex-col  md:flex-row   gap-70  py-12">
+    <section className="flex flex-col  md:flex-row mt-15 bg-bg  gap-70  py-12">
       <div className="shrink-0 order-first md:order-0">
         <div
           style={{
@@ -24,13 +24,16 @@ function Hero() {
       </div>
 
       <div className="flex-1 text-center md:text-left  ">
-        <h1 className="text-4xl font-bold text-letters">
+        <h2 className="text-4xl font-bold text-letters">
           Medhani Premathilaka
-        </h1>
-        <p className="mt-2 text-xl text-slate-600">
+        </h2>
+        <p
+          className="mt-2 text-xl text-letters1 font-bold"
+          style={{ fontFamily: '"Times New Roman", Times, serif' }}
+        >
           Computer Science Undergraduate, University of Ruhuna.
         </p>
-        <p className="mt-4 text-slate-700 max-w-xl  mx-auto md:mx-0 ">
+        <p className="mt-4 max-w-xl  mx-auto md:mx-0 text-letters1 ">
           I’m passionate about DevOps and cloud technologies. I enjoy learning
           fast and applying new concepts through real-world projects. I’m
           actively building hands-on experience with deployment, automation, and

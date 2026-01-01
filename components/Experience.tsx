@@ -55,7 +55,7 @@ function ExperienceItem({
               </span>
             )}
           </div>
-          <div className="flex items-center gap-2 text-slate-600 mt-1 flex-wrap">
+          <div className="flex items-center gap-2 text-letters1 mt-1 flex-wrap">
             <span className="font-semibold">{organization}</span>
             {location && (
               <>
@@ -74,7 +74,7 @@ function ExperienceItem({
         </div>
       </div>
 
-      <ul className="list-disc list-inside space-y-2 text-slate-700 mt-3">
+      <ul className="list-disc list-inside space-y-2 text-letters1  mt-3">
         {description.map((item, i) => (
           <li key={i} className="text-sm leading-relaxed">{item}</li>
         ))}

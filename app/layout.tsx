@@ -1,27 +1,30 @@
-import './globals.css'
-import Navbar from '@/components/Nav'
-import Footer from '@/components/Footer'
-import { ThemeProvider } from "@/components/theme-provider"
-import { Inter } from 'next/font/google'
+import "./globals.css";
+import Navbar from "@/components/Nav";
+import Footer from "@/components/Footer";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Inter } from "next/font/google";
 
-const inter = Inter({ 
-  subsets: ['latin'],
-  variable: '--font-inter',
-})
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 export const metadata = {
-  title: 'Your Name - Portfolio',
-  description: 'Full Stack Developer Portfolio',
-}
+  title: "Medhani Premathilaka",
+  description: "Full Stack Developer Portfolio",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en" className={inter.variable} suppressHydrationWarning>
-      <body className={inter.className}>
+      <head>
+        <link rel="icon" href="/images/medhani.svg" />
+      </head>
+      <body className={`${inter.className} bg-bg`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -29,12 +32,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <main className="min-h-screen">
-            {children}
-          </main>
-          <Footer/>
+          <main className="min-h-screen">{children}</main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }

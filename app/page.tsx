@@ -5,16 +5,16 @@ import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <section id="home" className="px-4 py-12 max-w-6xl mx-auto">
+    <main className="min-h-screen bg-bg">
+      <section id="home" className="px-4 py-12 max-w-6xl bg-bg mx-auto">
         <Hero />
       </section>
 
-      <section id="projects" className="px-4 py-12 bg-slate-50">
+      <section id="projects" className="px-4 py-12 bg-bg">
         <Projects />
       </section>
 
-      <section id="skills" className="px-4 py-12">
+      <section id="skills" className="px-4 bg-bg py-12">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-letters mb-8 text-center">
             Skills
