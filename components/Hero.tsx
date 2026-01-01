@@ -3,8 +3,8 @@ import Image from "next/image";
 
 function Hero() {
   return (
-    <section className="flex flex-col  md:flex-row gap-x-70 ml-30 mr-30 gap-8 py-12">
-      <div className="flex-shrink-0 order-first md:order-none">
+    <section className="flex flex-col  md:flex-row   gap-70  py-12">
+      <div className="shrink-0 order-first md:order-0">
         <div
           style={{
             width: 320,
@@ -31,12 +31,14 @@ function Hero() {
           Computer Science Undergraduate, University of Ruhuna.
         </p>
         <p className="mt-4 text-slate-700 max-w-xl  mx-auto md:mx-0 ">
-         I’m  passionate about DevOps and cloud technologies.
-I enjoy learning fast and applying new concepts through real-world projects.
-I’m actively building hands-on experience with deployment, automation, and system workflows.
-I work well in team environments and value collaboration in problem solving.
-Clear communication is one of my strengths, especially when working with diverse teams.
-I’m eager to grow as a developer while moving steadily towards a DevOps-focused career.
+          I’m passionate about DevOps and cloud technologies. I enjoy learning
+          fast and applying new concepts through real-world projects. I’m
+          actively building hands-on experience with deployment, automation, and
+          system workflows. I work well in team environments and value
+          collaboration in problem solving. Clear communication is one of my
+          strengths, especially when working with diverse teams. I’m eager to
+          grow as a developer while moving steadily towards a DevOps-focused
+          career.
         </p>
       </div>
     </section>
