@@ -10,8 +10,9 @@ export default function ThreeBackground() {
   const [mounted, setMounted] = useState(false);
   const currentTheme = theme === "system" ? systemTheme : theme ?? "light";
   const isDark = currentTheme === "dark";
-  const mainColor = isDark ? 0xd620af : 0x00d4ff;
-  const glowColor = isDark ? 0x7a1cac : 0x00d4ff;
+  // Use muted colors and reduced glow in dark mode so the pink name remains readable
+  const mainColor = isDark ? 0xa06080 : 0x00d4ff;
+  const glowColor = isDark ? 0x3f1b2a : 0x00d4ff;
 
   useEffect(() => {
     setMounted(true);
@@ -68,10 +69,10 @@ export default function ThreeBackground() {
     const tubeMaterial = new THREE.MeshPhongMaterial({
       color: mainColor,
       emissive: mainColor,
-      emissiveIntensity: 0.6,
+      emissiveIntensity: isDark ? 0.45 : 0.6,
       shininess: 60,
       transparent: true,
-      opacity: 0.95,
+      opacity: isDark ? 0.85 : 0.95,
     });
     const infinityTube = new THREE.Mesh(tubeGeometry, tubeMaterial);
     infinityTube.castShadow = false;
@@ -90,7 +91,7 @@ export default function ThreeBackground() {
     const outerTubeMaterial = new THREE.MeshBasicMaterial({
       color: glowColor,
       transparent: true,
-      opacity: 0.18,
+      opacity: isDark ? 0.12 : 0.18,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
     });
@@ -176,7 +177,7 @@ export default function ThreeBackground() {
       color: mainColor,
       size: 0.06,
       transparent: true,
-      opacity: 0.6,
+      opacity: isDark ? 0.5 : 0.6,
     });
     const curvePointsMesh = new THREE.Points(curveGeometry, curveMaterial);
     scene.add(curvePointsMesh);

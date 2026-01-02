@@ -117,7 +117,7 @@ function Footer() {
 
             {/* Built With */}
             <p className="text-slate-500 text-xs flex items-center gap-1">
-              Built with{" "}
+              Built with passion{" "}
               <Heart size={14} className="text-red-500 fill-red-500" /> using
               Next.js & Tailwind CSS
             </p>
