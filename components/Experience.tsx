@@ -53,9 +53,12 @@ function ExperienceItem({
           </div>
           <div className="flex items-center gap-2 text-letters1 mt-1 flex-wrap">
             <span className="font-semibold">{organization}</span>
+            
+
             {location && (
               <>
                 <span className="hidden sm:inline">•</span>
+                <br />
                 <span className="text-red-400"><MapPin size={14} /></span>
                 
                 <span className="flex items-center  gap-1">
