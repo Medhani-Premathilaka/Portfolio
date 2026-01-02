@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 import * as THREE from "three";
 
-export default function ThreeBackground(): JSX.Element {
+export default function ThreeBackground() {
   const mountRef = useRef<HTMLDivElement | null>(null);
   const { theme, systemTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme ?? "light";
@@ -204,7 +204,8 @@ export default function ThreeBackground(): JSX.Element {
         bgParticle.position.add(data.velocity);
 
         (["x", "y"] as const).forEach((axis) => {
-          if (Math.abs(bgParticle.position[axis]) > 15) {data.velocity[axis] *= -1;
+          if (Math.abs(bgParticle.position[axis]) > 15) {
+            data.velocity[axis] *= -1;
           }
         });
 
