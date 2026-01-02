@@ -1,18 +1,24 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 import * as THREE from "three";
 
 export default function ThreeBackground() {
   const mountRef = useRef<HTMLDivElement | null>(null);
   const { theme, systemTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const currentTheme = theme === "system" ? systemTheme : theme ?? "light";
   const isDark = currentTheme === "dark";
   const mainColor = isDark ? 0xd620af : 0x00d4ff;
   const glowColor = isDark ? 0x7a1cac : 0x00d4ff;
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
     if (!mountRef.current) return;
 
     // Scene setup
@@ -263,7 +269,24 @@ export default function ThreeBackground() {
       bgParticleGeometry.dispose();
       bgParticleMaterial.dispose();
     };
-  }, []);
+  }, [mounted, isDark, mainColor, glowColor]);
+
+  // Don't render anything on server to avoid hydration mismatch
+  if (!mounted) {
+    return (
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: -1,
+          background: "transparent",
+        }}
+      />
+    );
+  }
 
   const backgroundStyle = isDark
     ? "linear-gradient(135deg, #0a0e27 0%, #1a1a3e 50%, #0f1729 100%)"
