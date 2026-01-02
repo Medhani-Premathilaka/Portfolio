@@ -6,16 +6,16 @@ import SkillPill from "@/components/ui/skill-pill";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-bg">
-      <section id="home" className="px-4 py-12 max-w-6xl bg-bg mx-auto">
+    <main style={{ position: "relative", zIndex: 1 }} className="min-h-screen">
+      <section id="home" className="px-4 py-12  max-w-6xl mx-auto">
         <Hero />
       </section>
 
-      <section id="projects" className="px-4 py-12 bg-bg">
+      <section id="projects" className="px-4 py-12 ">
         <Projects />
       </section>
 
-      <section id="skills" className="px-4 bg-bg py-12">
+      <section id="skills" className="px-4  py-12">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-letters mb-8 text-center">
             Skills

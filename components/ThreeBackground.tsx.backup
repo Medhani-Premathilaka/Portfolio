@@ -1,0 +1,279 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import * as THREE from "three";
+import { useTheme } from "next-themes";
+
+export default function ThreeBackground() {
+  const mountRef = useRef<HTMLDivElement>(null);
+  const { theme, systemTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    console.log("🎨 ThreeBackground mounting...");
+
+    if (!mountRef.current || !mounted) {
+      console.warn("❗ ThreeBackground not mounted yet");
+      return;
+    }
+
+    console.log("✅ mountRef exists, creating scene...");
+
+    // Scene setup with fog for depth
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
+    const renderer = new THREE.WebGLRenderer({ 
+      alpha: true, 
+      antialias: true,
+      powerPreference: "high-performance" 
+    });
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    mountRef.current.appendChild(renderer.domElement);
+    
+    // ensure the canvas fills the mount element and doesn't intercept input
+    renderer.domElement.style.position = "absolute";
+    renderer.domElement.style.top = "0";
+    renderer.domElement.style.left = "0";
+    renderer.domElement.style.width = "100%";
+    renderer.domElement.style.height = "100%";
+    renderer.domElement.style.pointerEvents = "none";
+    renderer.domElement.style.zIndex = "-10";
+
+    // set transparent clear color
+    renderer.setClearColor(0x000000, 0);
+
+    // diagnostic logs
+    const rect = mountRef.current.getBoundingClientRect();
+    console.log("✅ Canvas added to DOM", {
+      width: rect.width,
+      height: rect.height,
+      zIndex: renderer.domElement.style.zIndex,
+    });
+    console.log(
+      "Computed canvas styles:",
+      window.getComputedStyle(renderer.domElement)
+    );
+
+    camera.position.z = 20;
+    camera.position.y = 2;
+
+    // Create infinity symbol curve
+    class InfinityCurve extends THREE.Curve<THREE.Vector3> {
+      constructor() {
+        super();
+      }
+
+      getPoint(t: number, optionalTarget = new THREE.Vector3()): THREE.Vector3 {
+        const angle = t * 2 * Math.PI;
+        const scale = 4;
+        const x =
+          (scale * Math.cos(angle)) / (1 + Math.sin(angle) * Math.sin(angle));
+        const y =
+          (scale * Math.sin(angle) * Math.cos(angle)) /
+          (1 + Math.sin(angle) * Math.sin(angle));
+        return optionalTarget.set(x, y, 0);
+      }
+    }
+
+    const infinityCurve = new InfinityCurve();
+
+    // Theme-aware colors (fall back to light values)
+    const currentTheme = theme === "system" ? systemTheme : theme;
+    const isDark = currentTheme === "dark";
+    const mainColor = isDark ? 0xd620af : 0x00d4ff;
+    const glowColor = isDark ? 0x7a1cac : 0x00d4ff;
+
+    // Create glowing infinity tube
+    const tubeGeometry = new THREE.TubeGeometry(
+      infinityCurve,
+      200,
+      0.3,
+      16,
+      true
+    );
+    const tubeMaterial = new THREE.MeshBasicMaterial({
+      color: mainColor,
+      transparent: true,
+      opacity: 0.6,
+    });
+    const infinityTube = new THREE.Mesh(tubeGeometry, tubeMaterial);
+    scene.add(infinityTube);
+
+    // Create outer glow
+    const outerTubeGeometry = new THREE.TubeGeometry(
+      infinityCurve,
+      200,
+      0.5,
+      16,
+      true
+    );
+    const outerTubeMaterial = new THREE.MeshBasicMaterial({
+      color: glowColor,
+      transparent: true,
+      opacity: 0.15,
+    });
+    const outerGlow = new THREE.Mesh(outerTubeGeometry, outerTubeMaterial);
+    scene.add(outerGlow);
+
+    // Create particles flowing along infinity path
+    interface ParticleData {
+      t: number;
+      speed: number;
+    }
+
+    const particles: THREE.Mesh[] = [];
+    const particleCount = 50;
+    const particleGeometry = new THREE.SphereGeometry(0.15, 8, 8);
+    const particleColor = isDark ? 0xd620af : 0x00ffaa;
+    const particleMaterial = new THREE.MeshBasicMaterial({
+      color: particleColor,
+      transparent: true,
+      opacity: 0.9,
+    });
+
+    for (let i = 0; i < particleCount; i++) {
+      const particle = new THREE.Mesh(particleGeometry, particleMaterial);
+      particle.userData = {
+        t: i / particleCount,
+        speed: 0.0005 + Math.random() * 0.001,
+      } as ParticleData;
+      scene.add(particle);
+      particles.push(particle);
+    }
+
+    // Add ambient particles in background
+    interface BgParticleData {
+      velocity: THREE.Vector3;
+    }
+
+    const bgParticles: THREE.Mesh[] = [];
+    const bgParticleCount = 100;
+    const bgParticleGeometry = new THREE.SphereGeometry(0.08, 8, 8);
+    const bgParticleColor = isDark ? 0x8aa2bd : 0x4a90e2;
+    const bgParticleMaterial = new THREE.MeshBasicMaterial({
+      color: bgParticleColor,
+      transparent: true,
+      opacity: 0.4,
+    });
+
+    for (let i = 0; i < bgParticleCount; i++) {
+      const bgParticle = new THREE.Mesh(bgParticleGeometry, bgParticleMaterial);
+
+      bgParticle.position.x = (Math.random() - 0.5) * 30;
+      bgParticle.position.y = (Math.random() - 0.5) * 30;
+      bgParticle.position.z = (Math.random() - 0.5) * 20 - 5;
+
+      bgParticle.userData = {
+        velocity: new THREE.Vector3(
+          (Math.random() - 0.5) * 0.01,
+          (Math.random() - 0.5) * 0.01,
+          (Math.random() - 0.5) * 0.01
+        ),
+      } as BgParticleData;
+
+      scene.add(bgParticle);
+      bgParticles.push(bgParticle);
+    }
+
+    console.log("✅ All 3D objects created");
+
+    // Animation
+    let frameCount = 0;
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // Rotate infinity symbol slowly
+      infinityTube.rotation.y += 0.001;
+      outerGlow.rotation.y += 0.001;
+
+      // Move particles along infinity path
+      particles.forEach((particle) => {
+        const data = particle.userData as ParticleData;
+        data.t += data.speed;
+        if (data.t > 1) data.t = 0;
+
+        const point = infinityCurve.getPoint(data.t);
+        particle.position.copy(point);
+        particle.rotation.y += 0.05;
+      });
+
+      // Animate background particles
+      bgParticles.forEach((bgParticle) => {
+        const data = bgParticle.userData as BgParticleData;
+        bgParticle.position.add(data.velocity);
+
+        (["x", "y"] as const).forEach((axis) => {
+          if (Math.abs(bgParticle.position[axis]) > 15) {
+            data.velocity[axis] *= -1;
+          }
+        });
+
+        if (Math.abs(bgParticle.position.z) > 10) {
+          data.velocity.z *= -1;
+        }
+      });
+
+      // Gentle camera movement
+      camera.position.x = Math.sin(Date.now() * 0.0002) * 2;
+      camera.position.y = Math.cos(Date.now() * 0.0003) * 1;
+      camera.lookAt(scene.position);
+
+      renderer.render(scene, camera);
+
+      // Log first few frames
+      if (frameCount < 3) {
+        console.log(`🎬 Frame ${frameCount} rendered`);
+        frameCount++;
+      }
+    }
+
+    animate();
+
+    // Handle resize
+    const handleResize = () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup
+    return () => {
+      console.log("🧹 Cleaning up ThreeBackground");
+      window.removeEventListener("resize", handleResize);
+      if (mountRef.current) {
+        mountRef.current.removeChild(renderer.domElement);
+      }
+      renderer.dispose();
+      tubeGeometry.dispose();
+      tubeMaterial.dispose();
+      outerTubeGeometry.dispose();
+      outerTubeMaterial.dispose();
+      particleGeometry.dispose();
+      particleMaterial.dispose();
+      bgParticleGeometry.dispose();
+      bgParticleMaterial.dispose();
+    };
+  }, [mounted, theme, systemTheme]);
+
+  if (!mounted) {
+    return <div className="fixed inset-0 z-0 pointer-events-none bg-bg" />;
+  }
+
+  return (
+    <div
+      ref={mountRef}
+      className="fixed inset-0 z-0 pointer-events-none bg-bg"
+    />
+  );
+}

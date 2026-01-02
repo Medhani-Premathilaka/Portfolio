@@ -3,6 +3,7 @@ import Navbar from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Inter } from "next/font/google";
+import ThreeBackground from "@/components/ThreeBackground";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,7 +27,8 @@ export default function RootLayout({
       </head>
       <body
         suppressHydrationWarning={true}
-        className={`${inter.className} bg-bg`}
+        className={`${inter.className} relative`}
+        style={{ background: "transparent" }}
       >
         <ThemeProvider
           attribute="class"
@@ -34,9 +36,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
+          <ThreeBackground />
+          <div className="relative z-10">
+            <Navbar />
+            <main className="min-h-screen">{children}</main>
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>
