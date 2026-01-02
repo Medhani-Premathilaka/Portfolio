@@ -21,10 +21,14 @@ function Nav() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+      // Close mobile menu on scroll
+      if (isOpen) {
+        setIsOpen(false);
+      }
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isOpen]);
 
   // Detect active section
   useEffect(() => {
@@ -46,6 +50,18 @@ function Nav() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Close menu on touch/scroll for mobile
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleTouchMove = () => {
+      setIsOpen(false);
+    };
+
+    window.addEventListener("touchmove", handleTouchMove);
+    return () => window.removeEventListener("touchmove", handleTouchMove);
+  }, [isOpen]);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -56,9 +72,11 @@ function Nav() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 h-25 p-5  transition-all duration-300 ${
-        isScrolled
-          ? "bg-background/95 backdrop-blur-md shadow-lg"
+      className={`fixed top-0 left-0 right-0 z-50 p-5 transition-all duration-300 ${
+        !isOpen ? "h-23" : ""
+      } ${
+        isScrolled || isOpen
+          ? "bg-background/50 backdrop-blur-md shadow-lg"
           : "bg-transparent"
       }`}
     >
@@ -73,7 +91,7 @@ function Nav() {
           </button>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex  items-center space-x-1">
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -126,7 +144,7 @@ function Nav() {
             : "max-h-0 opacity-0 overflow-hidden"
         }`}
       >
-        <div className="px-4 pt-2 pb-4 space-y-1 bg-background/95 backdrop-blur-md border-t">
+        <div className="px-4 pt-2 pb-4 space-y-1 bg-background/80  border-t ">
           {navItems.map((item) => (
             <button
               key={item.id}

@@ -2,6 +2,7 @@ import Experience from "@/components/Experience";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
+import SkillPill from "@/components/ui/skill-pill";
 
 export default function Home() {
   return (
@@ -20,88 +21,104 @@ export default function Home() {
             Skills
           </h2>
 
-          <div className="grid md:grid-cols-4 gap-10">
-            {/* Languages */}
-            <div>
-              <h3 className="font-semibold mb-3">Languages</h3>
-              <ul className="list-disc list-inside text-gray-400 space-y-1">
-                <li>Java</li>
-                <li>JavaScript / TypeScript</li>
-                <li>C, C#</li>
-                <li>PHP</li>
-                <li>SQL</li>
-              </ul>
-            </div>
+          <div className="grid md:grid-cols-4 gap-8">
+            {/** helper to render a category with ordered pills */}
+            {(() => {
+              type SkillStatus =
+                | "pro"
+                | "intermediate"
+                | "inprogress"
+                | "beginner";
 
-            {/* Frontend */}
-            <div>
-              <h3 className="font-semibold mb-3">Frontend</h3>
-              <ul className="list-disc list-inside text-gray-400 space-y-1">
-                <li>React, Next.js</li>
-                <li>HTML5, CSS3</li>
-                <li>Tailwind CSS, Bootstrap</li>
-                <li>MUI, Shadcn</li>
-                <li>jQuery</li>
-              </ul>
-            </div>
+              const statusOrder: Record<SkillStatus, number> = {
+                pro: 0,
+                intermediate: 1,
+                inprogress: 2,
+                beginner: 3,
+              };
 
-            {/* Backend */}
-            <div>
-              <h3 className="font-semibold mb-3">Backend</h3>
-              <ul className="list-disc list-inside text-gray-400 space-y-1">
-                <li>Node.js, Express.js</li>
-                <li>Spring Boot</li>
-                <li>Hibernate</li>
-                <li>RESTful APIs</li>
-                <li>JWT Authentication</li>
-              </ul>
-            </div>
+              const renderCategory = (
+                title: string,
+                skills: { name: string; status: SkillStatus }[]
+              ) => {
+                const sorted = skills.sort(
+                  (a, b) =>
+                    (statusOrder[a.status] ?? 9) -
+                      (statusOrder[b.status] ?? 9) ||
+                    a.name.localeCompare(b.name)
+                );
+                return (
+                  <div>
+                    <h3 className="font-semibold mb-3">{title}</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {sorted.map((s) => (
+                        <SkillPill key={s.name} variant={s.status}>
+                          {s.name}
+                        </SkillPill>
+                      ))}
+                    </div>
+                  </div>
+                );
+              };
 
-            {/* DevOps & Cloud */}
-            <div>
-              <h3 className="font-semibold mb-3">DevOps & Cloud</h3>
-              <ul className="list-disc list-inside text-gray-400 space-y-1">
-                <li>Docker</li>
-                <li>GitHub Actions, CI/CD pipelines</li>
-                <li>AWS EC2, S3, IAM</li>
-                <li>Nginx</li>
-                <li>Apache Tomcat</li>
-              </ul>
-            </div>
+              return (
+                <>
+                  {renderCategory("Languages", [
+                    { name: "TypeScript", status: "pro" },
+                    { name: "JavaScript", status: "pro" },
+                    { name: "Java", status: "intermediate" },
+                    { name: "C", status: "intermediate" },
+                    { name: "SQL", status: "intermediate" },
+                  ])}
 
-            {/* Databases */}
-            <div>
-              <h3 className="font-semibold mb-3">Databases</h3>
-              <ul className="list-disc list-inside text-gray-400 space-y-1">
-                <li>MySQL</li>
-                <li>PostgreSQL</li>
-                <li>MongoDB</li>
-                <li>Amazon DynamoDB</li>
-                <li>Firebase, Supabase</li>
-              </ul>
-            </div>
+                  {renderCategory("Frontend", [
+                    { name: "React", status: "pro" },
+                    { name: "Next.js", status: "pro" },
+                    { name: "Tailwind CSS", status: "intermediate" },
+                    { name: "MUI / Shadcn", status: "intermediate" },
+                    { name: "HTML & CSS", status: "pro" },
+                  ])}
 
-            {/* Tools & Platforms */}
-            <div>
-              <h3 className="font-semibold mb-3">Tools & Platforms</h3>
-              <ul className="list-disc list-inside text-gray-400 space-y-1">
-                <li>Git & GitHub</li>
-                <li>NPM</li>
-                <li>Vercel</li>
-                <li>Apache Maven</li>
-                <li>Unity, OpenGL</li>
-              </ul>
-            </div>
+                  {renderCategory("Backend", [
+                    { name: "Node.js", status: "intermediate" },
+                    { name: "Express", status: "intermediate" },
+                    { name: "Spring Boot", status: "beginner" },
+                    { name: "REST APIs", status: "intermediate" },
+                    { name: "JWT Auth", status: "intermediate" },
+                  ])}
 
-            {/* OS & Fundamentals */}
-            <div>
-              <h3 className="font-semibold mb-3">OS & Fundamentals</h3>
-              <ul className="list-disc list-inside text-gray-400 space-y-1">
-                <li>Linux (basic commands)</li>
-                <li>Networking fundamentals</li>
-                <li>System design basics</li>
-              </ul>
-            </div>
+                  {renderCategory("DevOps & Cloud", [
+                    { name: "Docker", status: "pro" },
+                    { name: "GitHub Actions", status: "intermediate" },
+                    { name: "AWS (EC2/S3/IAM)", status: "intermediate" },
+                    { name: "CI/CD", status: "intermediate" },
+                    { name: "Nginx", status: "beginner" },
+                  ])}
+
+                  {renderCategory("Databases", [
+                    { name: "PostgreSQL", status: "intermediate" },
+                    { name: "MySQL", status: "intermediate" },
+                    { name: "MongoDB", status: "beginner" },
+                    { name: "DynamoDB", status: "beginner" },
+                    { name: "Firebase / Supabase", status: "intermediate" },
+                  ])}
+
+                  {renderCategory("Tools & Platforms", [
+                    { name: "Git & GitHub", status: "pro" },
+                    { name: "Vercel", status: "intermediate" },
+                    { name: "NPM", status: "intermediate" },
+                    { name: "Maven", status: "beginner" },
+                    { name: "Unity / OpenGL", status: "beginner" },
+                  ])}
+
+                  {renderCategory("OS & Fundamentals", [
+                    { name: "Linux", status: "intermediate" },
+                    { name: "Networking basics", status: "beginner" },
+                    { name: "System design basics", status: "beginner" },
+                  ])}
+                </>
+              );
+            })()}
           </div>
         </div>
       </section>
