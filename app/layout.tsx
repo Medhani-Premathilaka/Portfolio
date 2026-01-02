@@ -20,11 +20,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable} suppressHydrationWarning>
+    <html lang="en" className={inter.variable} suppressHydrationWarning={true}>
       <head>
         <link rel="icon" href="/images/medhani.svg" />
       </head>
-      <body className={`${inter.className} bg-bg`}>
+      <body
+        suppressHydrationWarning={true}
+        className={`${inter.className} bg-bg`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

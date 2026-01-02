@@ -49,7 +49,7 @@ function Contact() {
         <h2 className="text-4xl font-bold text-letters mb-4">
           Let&apos;s Connect
         </h2>
-        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+        <p className="text-lg text-letters1 max-w-2xl  mx-auto">
           I&apos;m actively seeking Software Engineering internship
           opportunities with a focus on DevOps. Whether you have a question or
           just want to say hi, I&apos;ll get back to you!
@@ -57,7 +57,7 @@ function Contact() {
       </div>
 
       {/* Contact Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-2  gap-6 mb-12">
         {contactLinks.map((contact, index) => {
           const Icon = contact.icon;
           const isClickable = contact.href !== null;
@@ -70,10 +70,10 @@ function Contact() {
                 <Icon className="text-white" size={28} />
               </div>
               <div className="text-left">
-                <p className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-1">
+                <p className="text-sm font-semibold text-letters3 uppercase tracking-wide mb-1">
                   {contact.label}
                 </p>
-                <p className="text-lg font-medium text-slate-800 group-hover:text-letters transition-colors">
+                <p className="text-lg font-medium text-letters2 group-hover:text-letters transition-colors">
                   {contact.value}
                 </p>
               </div>
@@ -97,7 +97,7 @@ function Contact() {
                     ? "noopener noreferrer"
                     : undefined
                 }
-                className="group relative bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-letters/30"
+                className="group relative bg-linear-to-br from-letters/30 to-letters/0 p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-letters/10 hover:border-letters/30"
               >
                 {CardContent}
               </a>
@@ -107,7 +107,7 @@ function Contact() {
           return (
             <div
               key={index}
-              className="group relative bg-white p-6 rounded-2xl shadow-md border border-slate-100"
+              className="group relative bg-linear-to-br from-letters/30 to-letters/0 p-6 rounded-2xl shadow-md border border-letters/10"
             >
               {CardContent}
             </div>
@@ -116,7 +116,7 @@ function Contact() {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-linear-to-br from-letters/5 to-letters/10 rounded-3xl p-8 md:p-12 text-center border border-letters/20">
+      <div className="bg-linear-to-br from-letters/30 to-letters/0 rounded-3xl p-8 md:p-12 text-center border border-letters/20">
         <Send className="mx-auto mb-4 text-letters" size={48} />
         <h3 className="text-2xl font-bold text-letters  mb-3">
           Ready to Start a Conversation?

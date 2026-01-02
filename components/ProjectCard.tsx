@@ -21,7 +21,7 @@ function ProjectCard({
   live,
 }: ProjectCardProps) {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+    <div className="bg-linear-to-br from-letters/30 to-letters/0 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-letters/10">
       {/* Project Image */}
       <div className="relative h-48 w-full bg-gray-200">
         <Image src={image} alt={title} fill className="object-cover" />
@@ -30,7 +30,7 @@ function ProjectCard({
       {/* Content */}
       <div className="p-6">
         <h3 className="text-xl font-bold text-letters mb-2">{title}</h3>
-        <p className="text-slate-600 mb-4 text-sm">{description}</p>
+        <p className="text-letters2/80  mb-4 text-sm">{description}</p>
 
         {/* Tech Stack */}
         <div className="flex flex-wrap gap-2 mb-4">
@@ -51,7 +51,7 @@ function ProjectCard({
               href={github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm text-slate-600 hover:text-letters transition-colors"
+              className="flex items-center gap-2 text-sm text-letters2 hover:text-letters transition-colors"
             >
               <Github size={18} />
               Code
@@ -62,7 +62,7 @@ function ProjectCard({
               href={live}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm text-slate-600 hover:text-letters transition-colors"
+              className="flex items-center gap-2 text-sm text-letters2 hover:text-letters transition-colors"
             >
               <ExternalLink size={18} />
               Live Demo

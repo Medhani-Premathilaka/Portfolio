@@ -80,7 +80,7 @@ function Nav() {
                 onClick={() => scrollToSection(item.id)}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   activeSection === item.id
-                    ? "text-letters bg-letters/10"
+                    ? "text-letters bg-letters/20"
                     : "text-foreground hover:text-letters hover:bg-accent"
                 }`}
               >

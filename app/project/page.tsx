@@ -1,8 +1,20 @@
 import ProjectCard from '@/components/ProjectCard'
 
 const projects = [
-  { id: 1, title: 'Project 1', description: '...', image: '/images/project1.png' },
-  { id: 2, title: 'Project 2', description: '...', image: '/images/project2.png' },
+  {
+    id: 1,
+    title: 'Project 1',
+    description: '...',
+    image: '/images/project1.png',
+    tech: ['React', 'TypeScript'],
+  },
+  {
+    id: 2,
+    title: 'Project 2',
+    description: '...',
+    image: '/images/project2.png',
+    tech: ['Next.js', 'Tailwind CSS'],
+  },
 ]
 
 export default function Projects() {
