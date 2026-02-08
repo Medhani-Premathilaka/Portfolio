@@ -8,7 +8,7 @@ export default function ThreeBackground() {
   const mountRef = useRef<HTMLDivElement | null>(null);
   const { theme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const currentTheme = theme === "system" ? systemTheme : theme ?? "light";
+  const currentTheme = theme === "system" ? systemTheme : (theme ?? "light");
   const isDark = currentTheme === "dark";
   // Use muted colors and reduced glow in dark mode so the pink name remains readable
   const mainColor = isDark ? 0xa06080 : 0x00d4ff;
@@ -28,7 +28,7 @@ export default function ThreeBackground() {
       75,
       window.innerWidth / window.innerHeight,
       0.1,
-      1000
+      1000,
     );
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 
@@ -58,46 +58,7 @@ export default function ThreeBackground() {
 
     const infinityCurve = new InfinityCurve();
 
-    // Create glowing infinity tube using a lit material for depth
-    const tubeGeometry = new THREE.TubeGeometry(
-      infinityCurve,
-      400,
-      0.45,
-      24,
-      true
-    );
-    const tubeMaterial = new THREE.MeshPhongMaterial({
-      color: mainColor,
-      emissive: mainColor,
-      emissiveIntensity: isDark ? 0.45 : 0.6,
-      shininess: 60,
-      transparent: true,
-      opacity: isDark ? 0.85 : 0.95,
-    });
-    const infinityTube = new THREE.Mesh(tubeGeometry, tubeMaterial);
-    infinityTube.castShadow = false;
-    infinityTube.receiveShadow = false;
-    scene.add(infinityTube);
-
-    // Create outer glow
-    // Outer additive glow for bloom-like effect
-    const outerTubeGeometry = new THREE.TubeGeometry(
-      infinityCurve,
-      400,
-      0.95,
-      24,
-      true
-    );
-    const outerTubeMaterial = new THREE.MeshBasicMaterial({
-      color: glowColor,
-      transparent: true,
-      opacity: isDark ? 0.12 : 0.18,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false,
-    });
-    const outerGlow = new THREE.Mesh(outerTubeGeometry, outerTubeMaterial);
-    outerGlow.renderOrder = 1;
-    scene.add(outerGlow);
+    // Keep only flowing particles along the infinity path (green)
 
     // Create particles flowing along infinity path
     const particles: THREE.Mesh[] = [];
@@ -139,7 +100,7 @@ export default function ThreeBackground() {
         new THREE.Vector3(
           (Math.random() - 0.5) * 0.02,
           (Math.random() - 0.5) * 0.02,
-          (Math.random() - 0.5) * 0.01
+          (Math.random() - 0.5) * 0.01,
         );
 
       scene.add(bgParticle);
@@ -149,50 +110,24 @@ export default function ThreeBackground() {
     // Lighting
     const ambient = new THREE.AmbientLight(
       isDark ? 0x203040 : 0xffffff,
-      isDark ? 0.6 : 0.8
+      isDark ? 0.6 : 0.8,
     );
     scene.add(ambient);
     const keyLight = new THREE.PointLight(
       isDark ? 0xff88ff : 0xffffff,
       isDark ? 0.9 : 0.8,
-      60
+      60,
     );
     keyLight.position.set(10, 15, 10);
     scene.add(keyLight);
 
-    // Subtle line of points along the curve for extra detail
-    const curvePoints = infinityCurve.getPoints(600);
-    const curvePos = new Float32Array(curvePoints.length * 3);
-    for (let i = 0; i < curvePoints.length; i++) {
-      curvePos[i * 3] = curvePoints[i].x;
-      curvePos[i * 3 + 1] = curvePoints[i].y;
-      curvePos[i * 3 + 2] = curvePoints[i].z;
-    }
-    const curveGeometry = new THREE.BufferGeometry();
-    curveGeometry.setAttribute(
-      "position",
-      new THREE.BufferAttribute(curvePos, 3)
-    );
-    const curveMaterial = new THREE.PointsMaterial({
-      color: mainColor,
-      size: 0.06,
-      transparent: true,
-      opacity: isDark ? 0.5 : 0.6,
-    });
-    const curvePointsMesh = new THREE.Points(curveGeometry, curveMaterial);
-    scene.add(curvePointsMesh);
+    // (Removed tube, outer glow, and subtle curve point meshes)
 
     // Animation
     function animate() {
       requestAnimationFrame(animate);
 
-      // Rotate infinity symbol slowly
-      // slow twist and rotation for a more organic feel
-      infinityTube.rotation.y += 0.0024;
-      infinityTube.rotation.x += 0.0008;
-      outerGlow.rotation.y += 0.0024;
-      outerGlow.rotation.x += 0.0008;
-      curvePointsMesh.rotation.z += 0.0009;
+      // Gentle subtle global movement (particles provide the shape)
 
       // Move particles along infinity path
       particles.forEach((particle) => {
@@ -261,10 +196,6 @@ export default function ThreeBackground() {
         mountRef.current.removeChild(renderer.domElement);
       }
       renderer.dispose();
-      tubeGeometry.dispose();
-      tubeMaterial.dispose();
-      outerTubeGeometry.dispose();
-      outerTubeMaterial.dispose();
       particleGeometry.dispose();
       particleMaterial.dispose();
       bgParticleGeometry.dispose();
