@@ -47,7 +47,6 @@ function Nav() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Close menu on touch/scroll for mobile
@@ -109,7 +108,7 @@ function Nav() {
             {/* Resume Button */}
             <a
               href="/resume.pdf"
-              download
+              download="medhani_premathilaka.pdf"
               className="ml-2 px-4 py-2 bg-letters text-white rounded-lg text-sm font-medium hover:opacity-90 transition-all hover:scale-105 flex items-center gap-2"
             >
               <Download size={16} />
@@ -160,7 +159,7 @@ function Nav() {
           ))}
           <a
             href="/resume.pdf"
-            download
+            download="medhani_premathilaka.pdf"
             className="block w-full px-4 py-3 bg-letters text-white rounded-lg text-sm font-medium text-center hover:opacity-90 transition-opacity"
           >
             <span className="flex items-center justify-center gap-2">

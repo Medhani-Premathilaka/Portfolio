@@ -99,7 +99,7 @@ export default function Home() {
                     { name: "PostgreSQL", status: "intermediate" },
                     { name: "MySQL", status: "intermediate" },
                     { name: "MongoDB", status: "beginner" },
-                    { name: "DynamoDB", status: "beginner" },
+                    { name: "DynamoDB", status: "intermediate" },
                     { name: "Firebase / Supabase", status: "intermediate" },
                   ])}
 
@@ -113,8 +113,8 @@ export default function Home() {
 
                   {renderCategory("OS & Fundamentals", [
                     { name: "Linux", status: "intermediate" },
-                    { name: "Networking basics", status: "beginner" },
-                    { name: "System design basics", status: "beginner" },
+                    { name: "Networking basics", status: "intermediate" },
+                    { name: "System design basics", status: "intermediate" },
                   ])}
                 </>
               );

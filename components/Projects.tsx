@@ -4,6 +4,32 @@ import ProjectCard from './ProjectCard'
 const projects = [
   {
   id: 1,
+  title: 'HS Bridal Wears - Ongoing',
+  description:
+    'A cloud-based ERP for HS Bridal Wears, managing employees, inventory, billing, and notifications across multiple shops.Integrated AI-driven RAG application.',
+  image: '/images/HiruSandu.png',
+  tech: [
+    'React',
+    'TypeScript',
+    'Spring Boot',
+    'Java',
+    'RDS(PostgreSQL)',
+    'JWT',
+    'Kafka',
+    'Docker',
+    'AWS EC2',
+    'Nginx',
+    'AWS Lambda',
+    'GitHub Actions',
+    'RAG',
+    'OpenAI API'
+  ],
+  github: 'https://github.com/ZentroThread',
+  live: 'https://fabriq-frontend.vercel.app/'
+}
+,
+  {
+  id: 2,
   title: 'WorkMate360',
   description:
     'A secure, role-based full-stack employee management platform deployed on AWS. Built with Spring Boot and React, featuring JWT authentication, BCrypt password hashing, Nginx reverse proxy with HTTPS, and cloud-hosted PostgreSQL via Supabase.',
@@ -26,7 +52,7 @@ const projects = [
 }
 ,
   {
-  id: 2,
+  id: 3,
   title: 'DineEase',
   description:
     'A smart canteen management system built to reduce queue times by streamlining food ordering and operations. Designed using MVC architecture and core design patterns to ensure clean structure, scalability, and maintainability in a real-world academic setting.',
@@ -46,7 +72,7 @@ const projects = [
 }
 ,
   {
-  id: 3,
+  id: 4,
   title: 'FisherMate',
   description:
     'A desktop-based management system developed to support fisheries-related operations, featuring a structured JavaFX UI and database-driven functionality. Built as a team project with focus on data handling, user interaction, and clean application flow.',
