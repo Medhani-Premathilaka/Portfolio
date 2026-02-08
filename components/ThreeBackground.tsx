@@ -15,6 +15,7 @@ export default function ThreeBackground() {
   const glowColor = isDark ? 0x3f1b2a : 0x00d4ff;
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
@@ -38,6 +39,7 @@ export default function ThreeBackground() {
 
     camera.position.z = 15;
 
+    /*
     // Create infinity symbol curve (typed)
     class InfinityCurve extends THREE.Curve<THREE.Vector3> {
       constructor() {
@@ -78,6 +80,7 @@ export default function ThreeBackground() {
       scene.add(particle);
       particles.push(particle);
     }
+    */
 
     // Add ambient particles in background
     const bgParticles: THREE.Mesh[] = [];
@@ -129,6 +132,7 @@ export default function ThreeBackground() {
 
       // Gentle subtle global movement (particles provide the shape)
 
+      /*
       // Move particles along infinity path
       particles.forEach((particle) => {
         const data = particle.userData as { t: number; speed: number };
@@ -139,6 +143,7 @@ export default function ThreeBackground() {
         particle.position.copy(point);
         particle.rotation.y += 0.05;
       });
+      */
 
       // Animate background particles
       bgParticles.forEach((bgParticle) => {
@@ -196,8 +201,10 @@ export default function ThreeBackground() {
         mountRef.current.removeChild(renderer.domElement);
       }
       renderer.dispose();
+      /*
       particleGeometry.dispose();
       particleMaterial.dispose();
+      */
       bgParticleGeometry.dispose();
       bgParticleMaterial.dispose();
     };
