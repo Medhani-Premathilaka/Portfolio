@@ -92,6 +92,8 @@ export default function Home() {
                     { name: "GitHub Actions", status: "intermediate" },
                     { name: "AWS (EC2/S3/IAM)", status: "intermediate" },
                     { name: "CI/CD", status: "intermediate" },
+                    { name: "Terraform", status: "intermediate" },
+                    { name: "RDS", status: "intermediate" },
                     { name: "Nginx", status: "beginner" },
                   ])}
 
