@@ -92,7 +92,7 @@ function Experience() {
       title: "Full-Stack Developer - Final Year Project",
       organization: "Hirusandu Bridal Ware",
       location: "Gampaha, Sri Lanka",
-      period: "Jan 2025 - Present",
+      period: "Nov 2025 - Present",
       ongoing: true,
       type: "project",
       description: [
