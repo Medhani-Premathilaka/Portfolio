@@ -107,7 +107,7 @@ function Nav() {
 
             {/* Resume Button */}
             <a
-              href="/api/resume"
+              href="/medhani_premathilaka.pdf"
               download="medhani_premathilaka.pdf"
               className="ml-2 px-4 py-2 bg-letters text-white rounded-lg text-sm font-medium hover:opacity-90 transition-all hover:scale-105 flex items-center gap-2"
             >
@@ -158,7 +158,7 @@ function Nav() {
             </button>
           ))}
           <a
-            href="/api/resume"
+            href="/medhani_premathilaka.pdf"
             download="medhani_premathilaka.pdf"
             className="block w-full px-4 py-3 bg-letters text-white rounded-lg text-sm font-medium text-center hover:opacity-90 transition-opacity"
           >
