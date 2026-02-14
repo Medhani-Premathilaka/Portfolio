@@ -102,7 +102,8 @@ function Experience() {
         "Integrated WhatsApp Business API for automated customer promotions and marketing campaigns",
         "Architected scalable backend with Java Spring Boot and DynamoDB, utilizing Redis for caching",
         "Established CI/CD pipeline with Docker containerization and GitHub Actions for automated deployments",
-        "Tech Stack: React, TypeScript, Zustand, TanStack Query, Java Spring Boot, DynamoDB, Redis, Docker, GitHub Actions",
+        "Implemented Infrastructure as Code (IaC) to automate application deployment processes.",
+        "React, TypeScript, Zustand, TanStack Query, Java Spring Boot, DynamoDB, Redis, Docker, GitHub Actions, Terraform",
       ],
     },
     {

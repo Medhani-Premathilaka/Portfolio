@@ -45,7 +45,8 @@ const projects = [
     'BCrypt',
     'Nginx',
     'Vercel',
-    'GitHub Actions'
+    'GitHub Actions',
+    'Terrform'
   ],
   github: 'https://github.com/Medhani-Premathilaka/WorkMate360',
   live: 'https://workmate360.live'
