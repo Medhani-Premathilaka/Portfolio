@@ -4,7 +4,7 @@ import ProjectCard from './ProjectCard'
 const projects = [
   {
   id: 1,
-  title: 'HS Bridal Wears - Ongoing',
+  title: 'HS Bridal Wears',
   description:
     'A cloud-based ERP for HS Bridal Wears, managing employees, inventory, billing, and notifications across multiple shops.Integrated AI-driven RAG application.',
   image: '/images/HiruSandu.png',

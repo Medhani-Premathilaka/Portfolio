@@ -14,17 +14,17 @@ function Footer() {
     {
       name: "GitHub",
       icon: Github,
-      href: "https://github.com/yourusername",
+      href: "https://github.com/Medhani-Premathilaka",
     },
     {
       name: "LinkedIn",
       icon: Linkedin,
-      href: "https://linkedin.com/in/yourprofile",
+      href: "https://www.linkedin.com/in/medhani-premathilaka/",
     },
     {
       name: "Email",
       icon: Mail,
-      href: "mailto:medhani.dev@gmail.com",
+      href: "mailto:mpremathilaka1@gmail.com",
     },
   ];
 
