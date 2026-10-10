@@ -1,5 +1,4 @@
 // The stylesheet is processed by Next.js at build time.
-// @ts-expect-error The TypeScript server may not have a declaration for CSS imports.
 import "./globals.css";
 import Navbar from "@/components/Nav";
 import Footer from "@/components/Footer";
