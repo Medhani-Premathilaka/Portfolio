@@ -39,13 +39,13 @@ export default function Home() {
 
               const renderCategory = (
                 title: string,
-                skills: { name: string; status: SkillStatus }[]
+                skills: { name: string; status: SkillStatus }[],
               ) => {
                 const sorted = skills.sort(
                   (a, b) =>
                     (statusOrder[a.status] ?? 9) -
                       (statusOrder[b.status] ?? 9) ||
-                    a.name.localeCompare(b.name)
+                    a.name.localeCompare(b.name),
                 );
                 return (
                   <div>
@@ -63,6 +63,17 @@ export default function Home() {
 
               return (
                 <>
+                  {renderCategory("Monitoring", [
+                    { name: "Zabbix", status: "intermediate" },
+                    { name: "Dynatrace", status: "intermediate" },
+                    { name: "Splunk", status: "intermediate" },
+                    { name: "Grafana", status: "intermediate" },
+                    {
+                      name: "Jira Service Management",
+                      status: "intermediate",
+                    },
+                  ])}
+
                   {renderCategory("Languages", [
                     { name: "TypeScript", status: "pro" },
                     { name: "JavaScript", status: "pro" },

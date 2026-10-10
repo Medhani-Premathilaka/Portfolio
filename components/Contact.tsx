@@ -49,11 +49,11 @@ function Contact() {
         <h2 className="text-4xl font-bold text-letters mb-4">
           Let&apos;s Connect
         </h2>
-        <p className="text-lg text-letters1 max-w-2xl  mx-auto">
+        {/* <p className="text-lg text-letters1 max-w-2xl  mx-auto">
           I&apos;m actively seeking Software Engineering internship
           opportunities with a focus on DevOps. Whether you have a question or
           just want to say hi, I&apos;ll get back to you!
-        </p>
+        </p> */}
       </div>
 
       {/* Contact Cards Grid */}

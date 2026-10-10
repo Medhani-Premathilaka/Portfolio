@@ -53,18 +53,16 @@ function ExperienceItem({
           </div>
           <div className="flex items-center gap-2 text-letters1 mt-1 flex-wrap">
             <span className="font-semibold">{organization}</span>
-            
 
             {location && (
               <>
                 <span className="hidden sm:inline">•</span>
                 <br />
-                <span className="text-red-400"><MapPin size={14} /></span>
-                
-                <span className="flex items-center  gap-1">
-                  
-                  {location}
+                <span className="text-red-400">
+                  <MapPin size={14} />
                 </span>
+
+                <span className="flex items-center  gap-1">{location}</span>
               </>
             )}
           </div>
@@ -89,11 +87,29 @@ function ExperienceItem({
 function Experience() {
   const experiences: ExperienceItemProps[] = [
     {
-      title: "Full-Stack Developer - Final Year Project",
+      title: "Intern - Operations Center",
+      organization: "Virtusa",
+      location: "Sri Lanka",
+      period: "05/2026 - Present",
+      ongoing: true,
+      type: "project",
+      description: [
+        "Monitor application, server, and infrastructure alerts in an enterprise managed services environment",
+        "Work with Zabbix, Dynatrace, and Splunk to review alerts and support incident identification and investigation",
+        "Support incident management activities through Jira Service Management, including ticket tracking, escalation, and SLA monitoring",
+        "Identify and report potential SLA breaches and discrepancies in operational dashboards",
+        "Coordinate maintenance windows and alert suppression activities by reviewing change details and scheduled time periods",
+        "Support daily operational reporting, shift handovers, incident updates, and change-related communications",
+        "Collaborate with infrastructure, application support, and incident management teams to coordinate operational activities",
+        "Gain practical exposure to AWS infrastructure, Linux environments, server operations, and enterprise IT service management processes",
+      ],
+    },
+    {
+      title: "ERP solution - Final Year Project",
       organization: "Hirusandu Bridal Ware",
       location: "Gampaha, Sri Lanka",
-      period: "Nov 2025 - Present",
-      ongoing: true,
+      period: "Nov 2025 - March 2026",
+      ongoing: false,
       type: "project",
       description: [
         "Developing multi-tenant SaaS admin portal for bridal wear shop with enterprise-level architecture",

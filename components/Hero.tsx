@@ -32,17 +32,16 @@ function Hero() {
           className="mt-2 text-xl text-letters1 font-bold"
           style={{ fontFamily: '"Times New Roman", Times, serif' }}
         >
-          Computer Science Undergraduate, University of Ruhuna.
+          Operations Center Intern, Virtusa | Wiley Managed Services 
         </p>
         <p className="mt-4 max-w-xl  mx-auto md:mx-0 text-letters1 ">
-          I’m passionate about DevOps and cloud technologies. I enjoy learning
-          fast and applying new concepts through real-world projects. I’m
-          actively building hands-on experience with deployment, automation, and
-          system workflows. I work well in team environments and value
-          collaboration in problem solving. Clear communication is one of my
-          strengths, especially when working with diverse teams. I’m eager to
-          grow as a developer while moving steadily towards a DevOps-focused
-          career.
+          I am currently working at Virtusa as an Operations Center Intern on
+          the Wiley Managed Services project. I recently completed my degree at
+          the University of Ruhuna and have a strong interest in IT operations
+          and infrastructure. I am particularly fascinated by Site Reliability
+          Engineering (SRE). I enjoy learning
+          through real-world projects and look forward to progressing my career
+          in operations, infrastructure, and reliability engineering.
         </p>
       </div>
     </section>
